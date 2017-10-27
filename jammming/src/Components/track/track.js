@@ -1,10 +1,17 @@
 import React from 'react';
 
-export class Track extends React.Component{
-    renderAction() {
-        if (this.props.isRemoval) {return <a className="Track-action" onClick={this.removeTrack}>-</a> }{return <a className="Track-action" onClick={this.addTrack}>+</a>}
+export default class Track extends React.Component{
+    constructor(props){
+        super(props);
+        this.removeTrack= this.removeTrack.bind(this);
     }
-
+    
+    renderAction() {
+        if (this.props.isRemoval) {return <a className="Track-action" onClick={this.removeTrack()}>-</a> }{return <a className="Track-action" onClick={this.addTrack()}>+</a>}
+    }
+    removeTrack(){
+        this.props.onRemove(this.props.track)
+    }
     render(){
        
         return(
@@ -13,7 +20,7 @@ export class Track extends React.Component{
               <h3>{this.props.track.name}</h3>
               <p>{this.props.track.artist} | {this.props.track.album}</p>
             </div>
-            <a className="Track-action">{renderAction()}</a>
+            <a className="Track-action">{this.renderAction()}</a>
           </div>
         );
     }
