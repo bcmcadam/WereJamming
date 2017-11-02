@@ -47,7 +47,15 @@ const Spotify= {
             let accessToken= accessToken;
           let headers ={headers: {Authorization:`Bearer ${accessToken}`}};
           var userId;
-          return fetch (`https://api.spotify.com/v1/me`, {headers: headers}).then(response => {return response.json();}).then(jsonResponse.map(user => {return user.id}))
+          var playlistID;
+          return fetch (`https://api.spotify.com/v1/me`, {headers: headers}).then(response => {return response.json();}).then(jsonResponse => {return userId = jsonResponse.id });
+
+           return fetch (`https://api.spotify.com/v1/users/${userId}/playlists/`, {headers: headers, method: 'POST', body: { 
+            "description": "Created by Jammming",
+            "public": false,
+            "name": `"${name}"` }}).then(response => {return response.json();}).then(jsonResponse => {return playlistID = jsonResponse.id});
+
+          return fetch (`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {headers: headers, method: 'POST', body: {uris: trackUris}});
         }
 
     }
