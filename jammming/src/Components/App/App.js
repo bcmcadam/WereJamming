@@ -21,11 +21,11 @@ class App extends Component {
     this.setState({playlistName: name});
   }
   savePlaylist(){
-    var unsavedList= [];
-   return unsavedList= this.state.playlistTracks.map(track => {return track.uri});
-   Spotify.savePlaylist(unsavedList);
-   this.setState({playlistName: 'New Playlist'});
-   this.setState({searchResults: []});
+      var unsavedList= [];
+    unsavedList= this.state.playlistTracks.map(track => {return track.uri});
+    Spotify.savePlaylist(unsavedList);
+    this.setState({playlistName: 'New Playlist'});
+    this.setState({searchResults: []});
   }
   removeTrack(deleteTrack){
     var filteredPlaylist = this.state.playlistTracks;
@@ -34,8 +34,8 @@ class App extends Component {
   }
 
   search(term){
-      Spotify.search(term).then(searchResults => {
-			this.setState({searchResults: searchResults});	
+      Spotify.search(term).then(tracks => {
+			this.setState({searchResults: tracks});	
 		});
   }
   addTrack(newTrack) {    

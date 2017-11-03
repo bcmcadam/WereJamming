@@ -1,5 +1,7 @@
 import React from 'react';
 import TrackList from  '../TrackList/TrackList.js';
+import './Playlist.css';
+
 
 
 export default class Playlist extends React.Component{
@@ -8,7 +10,7 @@ export default class Playlist extends React.Component{
         this.handleNameChange= this.handleNameChange.bind(this);
     }
     handleNameChange(event){
-        this.props.onNameChange(EventTarget)
+        this.props.onNameChange(event.target.value)
     }
     render(){
         return(

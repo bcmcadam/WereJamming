@@ -1,11 +1,9 @@
 import React from 'react';
+import './TrackList.css';
 import Track from '../track/track.js'
 
 
 export default class TrackList extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         return(
          <div className="TrackList">
