@@ -35,11 +35,13 @@ const Spotify= {
         return new Promise((resolve) => {return resolve(accessToken);});
     },
     search: function (term) {
-         Spotify.getAccessToken().then( accessToken => {
-        fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {headers: {Authorization:`Bearer ${accessToken}`}});
-        }).then(response => {return response.json();}).then(jsonResponse => {
-            if(jsonResponse.tracks) {
-                return jsonResponse.tracks.map(track => {
+        return  Spotify.getAccessToken().then( accessToken => {
+        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {headers: {Authorization:`Bearer ${accessToken}`}});
+        }).then(response => { alert(response);
+            if(response.tracks) {
+                alert(response.tracks);
+                return response.tracks.map(track => {
+                    alert(response.tracks);
                     return {
                         ID: track.id,
                         Name: track.name,
