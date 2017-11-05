@@ -37,20 +37,17 @@ const Spotify= {
     search: function (term) {
         return  Spotify.getAccessToken().then( accessToken => {
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {headers: {Authorization:`Bearer ${accessToken}`}});
-        }).then(response => { alert(response);
-            if(response.tracks) {
-                alert(response.tracks);
-                return response.tracks.map(track => {
-                    alert(response.tracks);
+        }).then(response => {return response.json();}).then(response => { console.log(response.tracks.items);
+                return response.tracks.items.map(track => {
                     return {
                         ID: track.id,
                         Name: track.name,
-                        Artist: track.artist[0].name,
-                        Album: track.ablum.name,
+                        Artist: track.artists[0].name,
+                        Album: track.album.name,
                         URI: track.uri
                     }
                 })
-            }
+            
         })
     },
     savePlaylist: function (name, trackUris) {

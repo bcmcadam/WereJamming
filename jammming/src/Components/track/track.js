@@ -5,10 +5,11 @@ export default class Track extends React.Component{
     constructor(props){
         super(props);
         this.removeTrack= this.removeTrack.bind(this);
+        this.addTrack= this.addTrack.bind(this);
     }
     
     renderAction() {
-        if (this.props.isRemoval) {return <a className="Track-action" onClick={this.removeTrack()}>-</a> }{return <a className="Track-action" onClick={this.addTrack()}>+</a>}
+        if (this.props.isRemoval) {return <a className="Track-action" onClick={this.removeTrack}>-</a> }{return <a className="Track-action" onClick={this.addTrack}>+</a>}
     }
     addTrack(){
         this.props.onAdd(this.props.track);
@@ -21,10 +22,10 @@ export default class Track extends React.Component{
         return(
             <div className="Track">
             <div className="Track-information">
-              <h3>{this.props.track.name}</h3>
-              <p>{this.props.track.artist} | {this.props.track.album}</p>
+              <h3>{this.props.track.Name}</h3>
+              <p>{this.props.track.Artist} | {this.props.track.Album}</p>
             </div>
-            <a className="Track-action">{this.renderAction}</a>
+            <a className="Track-action">{this.renderAction()}</a>
           </div>
         );
     }
