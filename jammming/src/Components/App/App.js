@@ -23,7 +23,7 @@ class App extends Component {
   savePlaylist(){
       var unsavedList= [];
     unsavedList= this.state.playlistTracks.map(track => {return track.uri});
-    Spotify.savePlaylist(unsavedList);
+    Spotify.savePlaylist(this.state.playlistName, unsavedList)
     this.setState({playlistName: 'New Playlist'});
     this.setState({searchResults: []});
   }
