@@ -6,13 +6,11 @@ const Spotify= {
     getAccessToken: function(){
         if (accessToken !== ""){
             return accessToken;
-            alert("1");
         }
 
        
 
         if (window.location.href.includes('access_token')){
-            alert("2");
             const accessTokenMatch = window.location.href.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
             const expirationMatch = window.location.href.match(/expires_in=([^&]*)/)[1];
         if (accessTokenMatch && expirationMatch) 
@@ -27,7 +25,6 @@ const Spotify= {
        
     }
     else{
-        alert('3');
         window.location.href= `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
         
     
@@ -70,7 +67,7 @@ const Spotify= {
                 .then(jsonResponse=> 
                     { return playlistID=jsonResponse.id});})
                     .then(playlistID=> 
-                        {fetch (`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {headers: headers, method: 'POST', body: JSON.stringify({'uris': trackUris})});
+                        {console.log(trackUris); fetch (`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {headers: headers, method: 'POST', body: JSON.stringify({'uris': trackUris})});
                 });
     }
 
