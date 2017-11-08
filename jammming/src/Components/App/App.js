@@ -28,9 +28,8 @@ class App extends Component {
     this.setState({searchResults: []});
   }
   removeTrack(deleteTrack){
-    var filteredPlaylist = this.state.playlistTracks;
-    filteredPlaylist.filter(a => a.id !== deleteTrack.id);
-    this.setState({playlistTracks: filteredPlaylist });
+    var newPlaylist =this.state.playlistTracks.filter(track => {return track.ID != deleteTrack.ID});
+    this.setState({playlistTracks: newPlaylist});
   }
 
   search(term){
