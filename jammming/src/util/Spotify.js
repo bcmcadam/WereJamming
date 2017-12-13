@@ -1,11 +1,11 @@
-var accessToken='';
+var accessToken;
 var clientId = '24f19ddac3c840b79516c8bf1396f8f5';
 var redirectUri = 'http://localhost:3000/';
 
 const Spotify= {
     getAccessToken: function(){
-        if (accessToken !== ""){
-            return accessToken;
+        if (accessToken){
+            return new Promise((resolve) => {return resolve(accessToken);});
         }
 
        
@@ -67,7 +67,7 @@ const Spotify= {
                 .then(jsonResponse=> 
                     { return playlistID=jsonResponse.id});})
                     .then(playlistID=> 
-                        {console.log(trackUris); fetch (`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {headers: headers, method: 'POST', body: JSON.stringify({'uris': trackUris})});
+                        {fetch (`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {headers: headers, method: 'POST', body: JSON.stringify({'uris': trackUris})});
                 });
     }
 
