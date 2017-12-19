@@ -6,6 +6,8 @@ export default class Track extends React.Component{
         super(props);
         this.removeTrack= this.removeTrack.bind(this);
         this.addTrack= this.addTrack.bind(this);
+        this.playPreview= this.playPreview.bind(this);
+        this.preview = new Audio(this.props.track.previewUrl);
         
     }
     
@@ -22,13 +24,22 @@ export default class Track extends React.Component{
     removeTrack(){
         this.props.onRemove(this.props.track);
     }
+    playPreview(){
+        
+        if (this.preview.paused)
+        {
+            this.preview.play();
+        }else{
+            this.preview.pause();
+        }
+    }
     render(){
        
         return(
             <div className="Track">
             <div className="Track-information">
               <h3>{this.props.track.Name}</h3>
-              <p>{this.props.track.Artist} | {this.props.track.Album}</p>
+              <p>{this.props.track.Artist} | {this.props.track.Album} | <button onClick= {this.playPreview}>preview</button></p>
             </div>
             <a className="Track-action">{this.renderAction()}</a>
           </div>

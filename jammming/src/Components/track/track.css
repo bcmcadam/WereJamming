@@ -1,7 +1,8 @@
 .Track {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+    border-bottom: .5px solid rgba(256, 256, 256, 0.8);
+    padding-top: 8px;
   }
   
   .Track-action {
@@ -16,15 +17,16 @@
   }
   
   .Track-information {
-    flex-grow: 1;
+    flex-grow: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 72px;
+    height: 80px;
+    padding-bottom: 12px;
   }
   
   .Track-information h3 {
-    margin-bottom: .22rem;
+    margin-bottom: 0rem;
   }
   
   .Track-information p {

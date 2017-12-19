@@ -32,16 +32,19 @@ const Spotify= {
         return new Promise((resolve) => {return resolve(accessToken);});
     },
     search: function (term) {
+        localStorage.setItem('term', term);
         return  this.getAccessToken().then( accessToken => {
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {headers: {Authorization:`Bearer ${accessToken}`}});
         }).then(response => {return response.json();}).then(response => { 
                 return response.tracks.items.map(track => {
+                    localStorage.clear;
                     return {
                         ID: track.id,
                         Name: track.name,
                         Artist: track.artists[0].name,
                         Album: track.album.name,
-                        URI: track.uri
+                        URI: track.uri,
+                        previewUrl: track.preview_url
                     }
                 })
             
